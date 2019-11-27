@@ -61,3 +61,12 @@ sourcetype="wineventlog:*" "EventCode=4688" ("*.ps1" OR "*.bat") | table _time, 
 
 # Windows RDP Destination Addresses
 EventCode=5156 Source_Port=3389 | top 100 Destination_Address
+
+# Windows New Services Started
+sourcetype="wineventlog*"  EventCode="7045" | table ComputerName, Service_File_Name
+
+# Kerberosting (In Progress)
+sourcetype="wineventlog:*" EventCode="4776"
+
+# Pass The Hash (In Progress)
+sourcetype="wineventlog:security" "ntlmssp" | table ComputerName, Source_Network_Address
